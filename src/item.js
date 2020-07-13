@@ -1,4 +1,4 @@
-import { Totals } from './totals';
+import Totals from './totals';
 
 export class Item {
     constructor(key, name, tier) {

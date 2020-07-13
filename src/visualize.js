@@ -1,7 +1,7 @@
 import * as d3Base from 'd3';
 import * as d3Sankey from 'd3-sankey';
 
-import { Ingredient } from './recipe';
+import Ingredient from './ingredient';
 import { toggleIgnoreHandler } from './events';
 import { spec } from './factory';
 import { Rational, zero, one } from './rational';
@@ -13,9 +13,7 @@ const d3 = {
 };
 
 const iconSize = 48;
-
 const nodePadding = 20;
-
 const columnWidth = 150;
 const maxNodeHeight = 175;
 
@@ -63,38 +61,37 @@ function makeGraph(totals, targets, ignore) {
 
     const links = [];
     for (const node of nodes) {
-        if (node.ignore) {
-            continue;
-        }
-        for (const ing of node.ingredients) {
-            let rate;
-            if (node.name === 'output') {
-                rate = ing.amount;
-            } else {
-                rate = totals.rates.get(node.recipe).mul(ing.amount);
-            }
-            for (const subRecipe of ing.item.recipes) {
-                if (totals.rates.has(subRecipe)) {
-                    const link = {
-                        source: nodeMap.get(subRecipe.name),
-                        target: node,
-                        value: rate.toFloat(),
-                        rate: rate,
-                    };
-                    const belts = [];
-                    const beltCountExact = spec.getBeltCount(rate);
-                    const beltCount = beltCountExact.toFloat();
-                    for (let j = one; j.less(beltCountExact); j = j.add(one)) {
-                        const i = j.toFloat();
-                        belts.push({ link, i, beltCount });
+        if (!node.ignore) {
+            for (const ing of node.ingredients) {
+                let rate;
+                if (node.name === 'output') {
+                    rate = ing.amount;
+                } else {
+                    rate = totals.rates.get(node.recipe).mul(ing.amount);
+                }
+                for (const subRecipe of ing.item.recipes) {
+                    if (totals.rates.has(subRecipe)) {
+                        const link = {
+                            source: nodeMap.get(subRecipe.name),
+                            target: node,
+                            value: rate.toFloat(),
+                            rate: rate,
+                        };
+                        const belts = [];
+                        const beltCountExact = spec.getBeltCount(rate);
+                        const beltCount = beltCountExact.toFloat();
+                        for (let j = one; j.less(beltCountExact); j = j.add(one)) {
+                            const i = j.toFloat();
+                            belts.push({ link, i, beltCount });
+                        }
+                        link.belts = belts;
+                        links.push(link);
                     }
-                    link.belts = belts;
-                    links.push(link);
                 }
             }
         }
     }
-    return { nodes: nodes, links: links };
+    return { links, nodes };
 }
 
 function recipeValue(recipe, rate, ignore) {

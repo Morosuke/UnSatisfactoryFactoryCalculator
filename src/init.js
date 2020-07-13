@@ -3,7 +3,7 @@
 import { getBelts } from './belt';
 import { getBuildings } from './building';
 import { getItems } from './item';
-import { getRecipes } from './recipe';
+import { getRecipes } from './recipes';
 import data from './data/data.json';
 import { loadSettings } from './fragment';
 import renderSettings from './settings';

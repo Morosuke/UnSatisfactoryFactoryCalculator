@@ -9,7 +9,7 @@ const SELECTED_INPUT = 'selected';
 // events
 
 function itemHandler(target) {
-    return function (item) {
+    return item => {
         target.itemKey = item.key;
         target.item = item;
         spec.updateSolution();
@@ -17,21 +17,21 @@ function itemHandler(target) {
 }
 
 function removeHandler(target) {
-    return function () {
+    return () => {
         spec.removeTarget(target);
         spec.updateSolution();
     };
 }
 
 function changeBuildingCountHandler(target) {
-    return function () {
+    return () => {
         target.buildingsChanged();
         spec.updateSolution();
     };
 }
 
 function changeRateHandler(target) {
-    return function () {
+    return () => {
         target.rateChanged();
         spec.updateSolution();
     };

@@ -7,7 +7,7 @@ import {
     Rational, zero, half, one
 } from './rational';
 import BuildTarget from './target';
-import { Totals } from './totals';
+import Totals from './totals';
 import renderTotals from './visualize';
 
 const DEFAULT_ITEM_KEY = 'supercomputer';
