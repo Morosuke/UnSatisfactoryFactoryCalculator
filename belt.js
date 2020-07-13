@@ -1,4 +1,4 @@
-/*Copyright 2019 Kirk McDonald
+/* Copyright 2019 Kirk McDonald
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -10,28 +10,29 @@ Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
-limitations under the License.*/
-import { Rational } from "./rational.js"
+limitations under the License. */
+import { Rational } from './rational';
 
-class Belt {
+export class Belt {
     constructor(key, name, rate) {
-        this.key = key
-        this.name = name
-        this.rate = rate
+        this.key = key;
+        this.name = name;
+        this.rate = rate;
     }
+
     iconPath() {
-        return "images/" + this.name + ".png"
+        return `assets/images/${ this.name }.png`;
     }
 }
 
 export function getBelts(data) {
-    let belts = new Map()
-    for (let belt of data.belts) {
+    const belts = new Map();
+    for (const belt of data.belts) {
         belts.set(belt.key_name, new Belt(
             belt.key_name,
             belt.name,
             Rational.from_float(belt.rate).div(Rational.from_float(60))
-        ))
+        ));
     }
-    return belts
+    return belts;
 }
