@@ -1,3 +1,5 @@
+import beltData from './data/belts.json';
+
 import { Rational } from './rational';
 
 export class Belt {
@@ -12,9 +14,9 @@ export class Belt {
     }
 }
 
-export function getBelts(data) {
+export function getBelts() {
     const belts = new Map();
-    for (const belt of data.belts) {
+    for (const belt of beltData) {
         belts.set(belt.key_name, new Belt(
             belt.key_name,
             belt.name,

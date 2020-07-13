@@ -36,7 +36,7 @@ class Recipe {
         return this.product.item.iconPath();
     }
 
-    static makeRecipe(data, items, d) {
+    static makeRecipe(items, d) {
         const time = Rational.fromFloat(d.time);
         const [item_key, amount] = d.product;
         const [byproduct_key, byproduct_amount] = d.byproduct;

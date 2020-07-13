@@ -1,8 +1,8 @@
 // import * as d3 from 'd3';
 
 import { getBelts } from './belt';
-import { getBuildings } from './building';
-import { getItems } from './item';
+import { getBuildings } from './buildings';
+import { getItems } from './Item';
 import { getRecipes } from './recipes';
 import data from './data/data.json';
 import { loadSettings } from './fragment';
@@ -12,10 +12,10 @@ import { spec } from './factory';
 function loadData(settings) {
     // d3.json('./data/data.json')
     //     .then(data => {
-    const items = getItems(data);
-    const recipes = getRecipes(data, items);
-    const buildings = getBuildings(data);
-    const belts = getBelts(data);
+    const items = getItems();
+    const recipes = getRecipes(items);
+    const buildings = getBuildings();
+    const belts = getBelts();
     spec.setData(items, recipes, buildings, belts);
 
     renderSettings(settings);

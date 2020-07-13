@@ -1,3 +1,4 @@
+import itemData from './data/items.json';
 import Totals from './totals';
 
 export class Item {
@@ -44,9 +45,9 @@ export class Item {
     }
 }
 
-export function getItems(data) {
+export function getItems() {
     const items = new Map();
-    for (const d of data.items) {
+    for (const d of itemData) {
         items.set(d.key_name, new Item(d.key_name, d.name, d.tier));
     }
     return items;
