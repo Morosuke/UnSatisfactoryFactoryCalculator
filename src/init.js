@@ -4,7 +4,6 @@ import { getBelts } from './belt';
 import { getBuildings } from './buildings';
 import { getItems } from './Item';
 import { getRecipes } from './recipes';
-import data from './data/data.json';
 import { loadSettings } from './fragment';
 import renderSettings from './settings';
 import { spec } from './factory';
