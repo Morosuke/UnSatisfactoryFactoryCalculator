@@ -27,14 +27,14 @@ export class Item {
         const recipe = spec.getRecipe(this);
         const gives = recipe.gives(this);
         // let byproduct = recipe.byproduct(this)
-        rate = rate.div(gives);
-        totals.add(recipe, rate);
+        const newRate = rate.div(gives);
+        totals.add(recipe, newRate);
         totals.updateHeight(recipe, 0);
         if (ignore.has(recipe)) {
             return totals;
         }
         for (const ing of recipe.ingredients) {
-            const subtotals = ing.item.produce(spec, rate.mul(ing.amount), ignore);
+            const subtotals = ing.item.produce(spec, newRate.mul(ing.amount), ignore);
             totals.combine(subtotals);
         }
         return totals;

@@ -195,9 +195,6 @@ class FactorySpecification {
     }
 
     addTarget(itemKey = DEFAULT_ITEM_KEY) {
-        // if (itemKey === undefined) {
-        //     itemKey = DEFAULT_ITEM_KEY;
-        // }
         const item = this.items.get(itemKey);
         const target = new BuildTarget(this.buildTargets.length, itemKey, item, this.itemTiers);
         this.buildTargets.push(target);
@@ -230,7 +227,7 @@ class FactorySpecification {
         return totals;
     }
 
-    setHash() {
+    setHash = () => {
         window.location.hash = `#${ formatSettings() }`;
     }
 
