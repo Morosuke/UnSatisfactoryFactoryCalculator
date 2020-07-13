@@ -48,16 +48,16 @@ let labelFor = 0;
 //   Selection with the input's label.
 export function addInputs(selector, name, checked, callback) {
     selector.append('input')
-        .on('change', function (d, i, nodes) {
+        .on('change', (d, i, nodes) => {
             toggleDropdown.call(this);
             callback.call(this, d, i, nodes);
         })
-        .attr('id', () => `input-${ inputId += 1 }`)
+        .attr('id', `input-${ inputId += 1 }`)
         .attr('name', name)
         .attr('type', 'radio')
         .property('checked', checked);
     const label = selector.append('label')
-        .attr('for', () => `input-${ labelFor += 1 }`);
+        .attr('for', `input-${ labelFor += 1 }`);
     return label;
 }
 
