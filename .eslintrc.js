@@ -6,6 +6,7 @@ module.exports = {
         node: true
     },
     extends: [
+        'react-app',
         'airbnb-base',
         'plugin:import/errors',
         'plugin:import/warnings',
