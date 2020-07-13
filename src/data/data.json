@@ -360,7 +360,7 @@
             "tier": 5,
             "stack_size": 100
         },
-    {
+        {
             "name": "Rubber",
             "key_name": "rubber",
             "tier": 5,
@@ -565,11 +565,11 @@
             "stack_size": 100
         },
         {
-                "name": "Alumina Solution",
-                "key_name": "alumina-solution",
-                "tier": 7,
-                "stack_size": 50
-            },
+            "name": "Alumina Solution",
+            "key_name": "alumina-solution",
+            "tier": 7,
+            "stack_size": 50
+        },
 		{
             "name": "Aluminum Scrap",
             "key_name": "aluminum-scrap",
@@ -1655,30 +1655,30 @@
             "byproduct": ["copper-ingot", 999]
         },
         {
-                "name": "Alternate: Recycled Rubber",
-                "key_name": "alt-recycled-rubber",
-                "category": "refining",
-                "time": 12,
-                "ingredients": [
-                    ["plastic", 5],
-                    ["fuel", 6]
-                ],
-                "product": ["rubber", 12],
-                "byproduct": ["copper-ingot", 999]
-            },
+            "name": "Alternate: Recycled Rubber",
+            "key_name": "alt-recycled-rubber",
+            "category": "refining",
+            "time": 12,
+            "ingredients": [
+                ["plastic", 5],
+                ["fuel", 6]
+            ],
+            "product": ["rubber", 12],
+            "byproduct": ["copper-ingot", 999]
+        },
         {
-                    "name": "Alternate: Flexible Framework",
-                    "key_name": "alt-flexible-framework",
-                    "category": "crafting3",
-                    "time": 16,
-                    "ingredients": [
-                        ["modular-frame", 1],
-                        ["steel-beam", 6],
-                        ["rubber", 8]
-                    ],
-                    "product": ["versatile-framework", 2],
-                    "byproduct": ["copper-ingot", 999]
-            },
+            "name": "Alternate: Flexible Framework",
+            "key_name": "alt-flexible-framework",
+            "category": "crafting3",
+            "time": 16,
+            "ingredients": [
+                ["modular-frame", 1],
+                ["steel-beam", 6],
+                ["rubber", 8]
+            ],
+            "product": ["versatile-framework", 2],
+            "byproduct": ["copper-ingot", 999]
+        },
 		{
             "name": "Petroleum Coke",
             "key_name": "petroleum-coke",

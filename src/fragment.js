@@ -1,4 +1,4 @@
-/*Copyright 2019 Kirk McDonald
+/* Copyright 2019 Kirk McDonald
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -10,96 +10,96 @@ Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
-limitations under the License.*/
-import { DEFAULT_RATE, DEFAULT_RATE_PRECISION, DEFAULT_COUNT_PRECISION } from "./align.js"
-import { DEFAULT_TAB, currentTab } from "./events.js"
-import { spec, DEFAULT_PURITY, DEFAULT_BELT } from "./factory.js"
-import { Rational } from "./rational.js"
+limitations under the License. */
+import { DEFAULT_RATE, DEFAULT_RATE_PRECISION, DEFAULT_COUNT_PRECISION } from './align.js';
+import { DEFAULT_TAB, currentTab } from './events.js';
+import { spec, DEFAULT_PURITY, DEFAULT_BELT } from './factory.js';
+import { Rational } from './rational.js';
 
 export function formatSettings() {
-    let settings = ""
+    let settings = '';
     if (currentTab !== DEFAULT_TAB) {
-        settings += "tab=" + currentTab + "&"
+        settings += `tab=${ currentTab }&`;
     }
     if (spec.format.rateName !== DEFAULT_RATE) {
-        settings += "rate=" + spec.format.rateName + "&"
+        settings += `rate=${ spec.format.rateName }&`;
     }
     if (spec.format.ratePrecision !== DEFAULT_RATE_PRECISION) {
-        settings += "rp=" + spec.format.ratePrecision + "&"
+        settings += `rp=${ spec.format.ratePrecision }&`;
     }
     if (spec.format.countPrecision !== DEFAULT_COUNT_PRECISION) {
-        settings += "cp=" + spec.format.countPrecision + "&"
+        settings += `cp=${ spec.format.countPrecision }&`;
     }
     if (spec.belt.key !== DEFAULT_BELT) {
-        settings += "belt=" + spec.belt.key + "&"
+        settings += `belt=${ spec.belt.key }&`;
     }
 
-    settings += "items="
-    let targetStrings = []
-    for (let target of spec.buildTargets) {
-        let targetString = ""
+    settings += 'items=';
+    const targetStrings = [];
+    for (const target of spec.buildTargets) {
+        let targetString = '';
         if (target.changedBuilding) {
-            targetString = `${target.itemKey}:f:${target.buildingInput.value}`
+            targetString = `${ target.itemKey }:f:${ target.buildingInput.value }`;
         } else {
-            targetString = `${target.itemKey}:r:${target.rate.mul(spec.format.rateFactor).toString()}`
+            targetString = `${ target.itemKey }:r:${ target.rate.mul(spec.format.rateFactor).toString() }`;
         }
-        targetStrings.push(targetString)
+        targetStrings.push(targetString);
     }
-    settings += targetStrings.join(",")
+    settings += targetStrings.join(',');
 
-    let ignore = []
-    for (let recipe of spec.ignore) {
-        ignore.push(recipe.key)
+    const ignore = [];
+    for (const recipe of spec.ignore) {
+        ignore.push(recipe.key);
     }
     if (ignore.length > 0) {
-        settings += "&ignore=" + ignore.join(",")
+        settings += `&ignore=${ ignore.join(',') }`;
     }
 
-    let overclock = []
-    for (let [recipe, factor] of spec.overclock) {
-        let s = factor.mul(Rational.from_float(100)).toString()
-        overclock.push(`${recipe.key}:${s}`)
+    const overclock = [];
+    for (const [recipe, factor] of spec.overclock) {
+        const s = factor.mul(Rational.fromFloat(100)).toString();
+        overclock.push(`${ recipe.key }:${ s }`);
     }
     if (overclock.length > 0) {
-        settings += "&overclock=" + overclock.join(",")
+        settings += `&overclock=${ overclock.join(',') }`;
     }
 
-    let alt = []
-    for (let [item, recipe] of spec.altRecipes) {
-        alt.push(recipe.key)
+    const alt = [];
+    for (const [item, recipe] of spec.altRecipes) {
+        alt.push(recipe.key);
     }
     if (alt.length > 0) {
-        settings += "&alt=" + alt.join(",")
+        settings += `&alt=${ alt.join(',') }`;
     }
 
-    let minerStrings = []
-    for (let [recipe, {miner, purity}] of spec.minerSettings) {
-        let miners = spec.buildings.get(recipe.category)
-        let defaultMiner = miners[0]
+    const minerStrings = [];
+    for (const [recipe, { miner, purity }] of spec.minerSettings) {
+        const miners = spec.buildings.get(recipe.category);
+        const defaultMiner = miners[0];
         if (miner !== defaultMiner || purity !== DEFAULT_PURITY) {
-            let s = `${recipe.key}:${miner.key}:${purity.key}`
-            minerStrings.push(s)
+            const s = `${ recipe.key }:${ miner.key }:${ purity.key }`;
+            minerStrings.push(s);
         }
     }
     if (minerStrings.length > 0) {
-        settings += "&miners=" + minerStrings.join(",")
+        settings += `&miners=${ minerStrings.join(',') }`;
     }
 
-    return settings
+    return settings;
 }
 
 export function loadSettings(fragment) {
-    let settings = new Map()
-    fragment = fragment.substr(1)
-    let pairs = fragment.split("&")
-    for (let pair of pairs) {
-        let i = pair.indexOf("=")
+    const settings = new Map();
+    fragment = fragment.substr(1);
+    const pairs = fragment.split('&');
+    for (const pair of pairs) {
+        const i = pair.indexOf('=');
         if (i === -1) {
-            continue
+            continue;
         }
-        let name = pair.substr(0, i)
-        let value = pair.substr(i + 1)
-        settings.set(name, value)
+        const name = pair.substr(0, i);
+        const value = pair.substr(i + 1);
+        settings.set(name, value);
     }
-    return settings
+    return settings;
 }
