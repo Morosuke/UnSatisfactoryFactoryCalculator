@@ -1,11 +1,11 @@
 {
-  "name": "morosuke.github.io",
+  "name": "UnSatisfactoryFactoryCalculator",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://morosuke.github.io",
+  "homepage": "http://morosuke.github.io/UnSatisfactoryFactoryCalculator",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Morosuke/morosuke.github.io.git"
+    "url": "git+https://github.com/Morosuke/UnSatisfactoryFactoryCalculator"
   },
   "engines": {
     "node": "^14.5.0",
