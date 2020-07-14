@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "98e2677eb7dcb3f0184a4bd2a946c1f9",
+    "revision": "c15f6e29535e39ea3a124c675ff63402",
     "url": "/UnSatisfactoryFactoryCalculator/index.html"
   },
   {
-    "revision": "66eff7ff721b48a32011",
+    "revision": "07541883ee7bca7c0e85",
     "url": "/UnSatisfactoryFactoryCalculator/static/css/main.80a55bc8.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/UnSatisfactoryFactoryCalculator/static/js/2.08071ef4.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "66eff7ff721b48a32011",
-    "url": "/UnSatisfactoryFactoryCalculator/static/js/main.f299edea.chunk.js"
+    "revision": "07541883ee7bca7c0e85",
+    "url": "/UnSatisfactoryFactoryCalculator/static/js/main.0192d352.chunk.js"
   },
   {
     "revision": "3c98dabd56d5ca99ab4d",
