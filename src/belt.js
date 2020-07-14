@@ -10,7 +10,7 @@ export class Belt {
     }
 
     iconPath() {
-        return `/images/${ this.name }.png`;
+        return `${ process.env.PUBLIC_URL }/images/${ this.name }.png`;
     }
 }
 
