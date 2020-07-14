@@ -56,6 +56,8 @@ class FactorySpecification {
     setData(items, recipes, buildings, belts) {
         this.items = items;
         const tierMap = new Map();
+        // TODO: fix this
+        // eslint-disable-next-line
         for (const [itemKey, item] of items) {
             let tier = tierMap.get(item.tier);
             if (tier === undefined) {
@@ -65,6 +67,8 @@ class FactorySpecification {
             tier.push(item);
         }
         this.itemTiers = [];
+        // TODO: fix this
+        // eslint-disable-next-line
         for (const [tier, tierItems] of tierMap) {
             this.itemTiers.push(tierItems);
         }
@@ -89,6 +93,8 @@ class FactorySpecification {
 
     initMinerSettings() {
         this.minerSettings = new Map();
+        // TODO: fix this
+        // eslint-disable-next-line
         for (const [recipeKey, recipe] of this.recipes) {
             if (minerCategories.has(recipe.category)) {
                 const miners = this.buildings.get(recipe.category);
@@ -172,7 +178,8 @@ class FactorySpecification {
         return rate.div(this.belt.rate);
     }
 
-    getPowerUsage(recipe, rate, itemCount) {
+    // getPowerUsage(recipe, rate, itemCount) {
+    getPowerUsage(recipe, rate) {
         const building = this.getBuilding(recipe);
         if (building === null || this.ignore.has(recipe)) {
             return { average: zero, peak: zero };

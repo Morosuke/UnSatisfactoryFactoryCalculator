@@ -39,11 +39,11 @@ class Recipe {
     static makeRecipe(items, d) {
         const time = Rational.fromFloat(d.time);
         const [item_key, amount] = d.product;
-        const [byproduct_key, byproduct_amount] = d.byproduct;
+        // const [byproduct_key, byproduct_amount] = d.byproduct;
         const item = items.get(item_key);
-        const byproduct_item = items.get(byproduct_key);
+        // const byproduct_item = items.get(byproduct_key);
         const product = new Ingredient(item, Rational.fromFloat(amount));
-        const byproduct = new Ingredient(byproduct_item, Rational.fromFloat(byproduct_amount));
+        // const byproduct = new Ingredient(byproduct_item, Rational.fromFloat(byproduct_amount));
         const ingredients = [];
         for (const [item_key, amount] of d.ingredients) {
             const item = items.get(item_key);

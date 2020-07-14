@@ -100,6 +100,8 @@ function renderRateOptions(settings) {
     }
     spec.format.setDisplayRate(rateName);
     const rates = [];
+    // TODO: fix this
+    // eslint-disable-next-line
     for (const [rateName, longRateName] of longRateNames) {
         rates.push({ rateName, longRateName });
     }
@@ -151,6 +153,8 @@ function renderBelts(settings) {
     spec.belt = spec.belts.get(beltKey);
 
     const belts = [];
+    // TODO: fix this
+    // eslint-disable-next-line
     for (const [beltKey, belt] of spec.belts) {
         belts.push(belt);
     }
