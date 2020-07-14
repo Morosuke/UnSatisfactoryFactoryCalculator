@@ -19,7 +19,6 @@
 }
 /* top-level/shared elements */
 body {
-  font-family: sans-serif;
   color: var(--foreground);
   background-color: var(--dark);
 }
@@ -221,9 +220,7 @@ g.overlay {
   cursor: pointer;
 }
 text {
-  stroke: none;
   fill: var(--foreground);
-  font: 12px sans-serif;
 }
 /* items tab */
 #totals {

@@ -1,7 +1,7 @@
 import { select } from 'd3';
 
 import { toggleIgnoreHandler } from './events';
-import { spec } from './factory';
+import { spec as factorySpec } from './factory';
 import { Rational, zero, one } from './rational';
 
 class Header {
@@ -22,8 +22,8 @@ function changeOverclock(d) {
         x = twoFifty;
     }
     x = x.div(hundred);
-    spec.setOverclock(d.recipe, x);
-    spec.updateSolution();
+    factorySpec.setOverclock(d.recipe, x);
+    factorySpec.updateSolution();
 }
 
 // Remember these values from update to update, to make it simpler to reuse
@@ -38,7 +38,7 @@ function displayItems(spec, totals, ignore) {
     let totalAveragePower = zero;
     let totalPeakPower = zero;
     let powerShardsUsed = 0;
-    for (let i = 0; i < totals.topo.length; i++) {
+    for (let i = 0; i < totals.topo.length; i += 1) {
         const recipe = totals.topo[i];
         const display = displayedItems[i];
         const rate = totals.rates.get(recipe);
@@ -109,7 +109,7 @@ function displayItems(spec, totals, ignore) {
         .classed('icon belt-icon', true)
         .attr('width', 32)
         .attr('height', 32);
-    beltCell.append(d => new Text(' \u00d7'));
+    beltCell.append(() => new Text(' \u00d7'));
     row.append('td')
         .classed('right-align', true)
         .append('tt')
@@ -121,7 +121,7 @@ function displayItems(spec, totals, ignore) {
         .classed('icon building-icon', true)
         .attr('width', 32)
         .attr('height', 32);
-    buildingCell.append(d => new Text(' \u00d7'));
+    buildingCell.append(() => new Text(' \u00d7'));
     row.append('td')
         .classed('right-align building', true)
         .append('tt')
@@ -187,7 +187,7 @@ function displayItems(spec, totals, ignore) {
                 .attr('title', powerShard.name)
                 .attr('width', 32)
                 .attr('height', 32);
-            powerShardCell.append(d => new Text(' \u00d7'));
+            powerShardCell.append(() => new Text(' \u00d7'));
 
             buildingRow.insert('td', 'td.power-shard-icon + *')
                 .classed('right-align building power-shard', true)
@@ -201,12 +201,10 @@ function displayItems(spec, totals, ignore) {
         // ...update the counts of each power shard cell, and hide any power
         // shard cell with a count of 0:
         buildingRow.selectAll('tt.power-shard-count').text(d => d.powerShardCount);
-        buildingRow.selectAll('.power-shard').classed('hide-power-shard', d => d.powerShardCount == 0);
-    }
-
-    // Otherwise, remove all power shard cells, and mark the table's power
-    // shard column "collapsed":
-    else {
+        buildingRow.selectAll('.power-shard').classed('hide-power-shard', d => !d.powerShardCount);
+    } else {
+        // Otherwise, remove all power shard cells, and mark the table's power
+        // shard column "collapsed":
         buildingRow.selectAll('.power-shard').remove();
         table.classed('power-shard-collapsed', true);
     }
