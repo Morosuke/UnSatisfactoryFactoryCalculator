@@ -206,6 +206,8 @@ function renderTotals(totals, targets, ignore) {
     // high.
     const valueFactor = Rational.fromFloat(maxNodeHeight).div(largestValue);
     let largestEstimate = 0;
+    // TODO: fix this
+    // eslint-disable-next-line
     for (const [rank, rankList] of ranks) {
         const estimate = rankHeightEstimate(rankList, valueFactor);
         if (estimate > largestEstimate) {

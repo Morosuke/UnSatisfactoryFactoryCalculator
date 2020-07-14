@@ -1,7 +1,6 @@
 import { select, selectAll } from 'd3';
 
 import { spec } from './factory';
-import { formatSettings } from './fragment';
 
 // build target events
 

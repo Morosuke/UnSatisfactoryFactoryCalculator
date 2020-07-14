@@ -1,7 +1,7 @@
-import { DEFAULT_RATE, DEFAULT_RATE_PRECISION, DEFAULT_COUNT_PRECISION } from './align.js';
-import { DEFAULT_TAB, currentTab } from './events.js';
-import { spec, DEFAULT_PURITY, DEFAULT_BELT } from './factory.js';
-import { Rational } from './rational.js';
+import { DEFAULT_RATE, DEFAULT_RATE_PRECISION, DEFAULT_COUNT_PRECISION } from './align';
+import { DEFAULT_TAB, currentTab } from './events';
+import { spec, DEFAULT_PURITY, DEFAULT_BELT } from './factory';
+import { Rational } from './rational';
 
 export function formatSettings() {
     let settings = '';
@@ -52,6 +52,8 @@ export function formatSettings() {
     }
 
     const alt = [];
+    // TODO: fix this
+    // eslint-disable-next-line
     for (const [item, recipe] of spec.altRecipes) {
         alt.push(recipe.key);
     }
@@ -77,16 +79,15 @@ export function formatSettings() {
 
 export function loadSettings(fragment) {
     const settings = new Map();
-    fragment = fragment.substr(1);
-    const pairs = fragment.split('&');
+    const subFragment = fragment.substr(1);
+    const pairs = subFragment.split('&');
     for (const pair of pairs) {
         const i = pair.indexOf('=');
-        if (i === -1) {
-            continue;
+        if (i) {
+            const name = pair.substr(0, i);
+            const value = pair.substr(i + 1);
+            settings.set(name, value);
         }
-        const name = pair.substr(0, i);
-        const value = pair.substr(i + 1);
-        settings.set(name, value);
     }
     return settings;
 }
