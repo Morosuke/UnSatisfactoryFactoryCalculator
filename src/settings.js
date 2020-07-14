@@ -34,7 +34,7 @@ function renderTargets(settings) {
     select('#targets li.target').remove();
 
     const targetSetting = settings.get('items');
-    if (targetSetting !== undefined && targetSetting !== '') {
+    if (targetSetting) {
         const targets = targetSetting.split(',');
         for (const targetString of targets) {
             const parts = targetString.split(':');
