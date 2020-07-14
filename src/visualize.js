@@ -1,7 +1,7 @@
 import * as d3Base from 'd3';
 import * as d3Sankey from 'd3-sankey';
 
-import Ingredient from './ingredient';
+import Ingredient from './Ingredient';
 import { toggleIgnoreHandler } from './events';
 import { spec } from './factory';
 import { Rational, zero, one } from './rational';
